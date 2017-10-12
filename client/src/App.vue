@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <header />
+    <Header />
     <div class="container-fluid">
       <router-view/>
     </div>
@@ -9,11 +9,11 @@
 </template>
 
 <script>
-import header from '@/components/Header'
+import Header from '@/components/Header'
 export default {
   name: 'app',
   components: {
-    header
+    Header
   }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-inverse">
+  <nav class="navbar">
     <div class="container-fluid">
       <div class="navbar-header">
         <router-link class="navbar-brand">HacktivExpress</router-link> <!-- //:to="'/'" -->
@@ -20,5 +20,7 @@ export default {
 </script>
 
 <style>
-
+.nav-bar{
+  background-color: #dedede;
+}
 </style>
