@@ -24,7 +24,16 @@ var findAllArticle = (req, res) => {
   .catch(err => res.send(err))
 }
 
+var getArticle = (req, res) => {
+  Article.findById(req.params.id)
+  .then(article => {
+    res.send(article)
+  })
+  .catch(err => res.send(err))
+}
+
 
 module.exports = {
-  findAllArticle, createArticle
+  findAllArticle, createArticle,
+  getArticle
 }
