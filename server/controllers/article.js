@@ -35,8 +35,8 @@ var getArticle = (req, res) => {
 var updateArticle = (req, res) => {
   Article.findById(req.params.id)
   .then(article => {
-    console.log('article author', article.author)
-    console.log('req id', req.id)
+    console.log('article author --->', article.author)
+    console.log('req id--->', req.id)
     if(article.author == req.id){
       article.title = req.body.title || article.title
       article.content = req.body.content || article.content
@@ -64,8 +64,54 @@ var updateArticle = (req, res) => {
   .catch(err => res.send(err))
 }
 
+var removeArticle = (req, res) => {
+  Article.findByIdAndRemove({_id: req.params.id})
+  .then((article) => {
+    console.log('ini author -----', article)
+    if(article.author == req.id){
+      Article.remove({
+        _id: req.params.id
+      })
+      .then(() => {
+        res.send({
+          message:'Berhasil hapus data'
+        })
+      })
+      .catch(err => console.log(err))
+    } else{
+      res.send({
+        message: 'Bukan author'
+      })
+    }
+  })
+  .catch(err => console.log(err))
+}
+
+var getByAuthor = (req, res) => {
+  Article.find({
+    author: req.params.author
+  })
+  .populate('author', '_id username')
+  .exec((err, result)=>{
+    if(err) res.send({err: err});
+    res.json(result);
+  })
+}
+
+var getByCategory = (req, res) => {
+  Article.find({
+    category: req.params.category
+  })
+  .populate('author', '_id username')
+  .exec((err, result)=>{
+    if(err) res.send({err: err});
+    res.json(result);
+  })
+}
+
 
 module.exports = {
   findAllArticle, createArticle,
-  getArticle, updateArticle
+  getArticle, updateArticle, removeArticle,
+  getByAuthor, getByCategory
 }
