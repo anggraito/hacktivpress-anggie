@@ -32,8 +32,18 @@ var getArticle = (req, res) => {
   .catch(err => res.send(err))
 }
 
+var updateArticle = (req, res) => {
+  Article.update({_id: req.params.id}, {
+    $set: req.body
+  })
+  .then(article => {
+    res.send(article)
+  })
+  .catch(err => res.send(err))
+}
+
 
 module.exports = {
   findAllArticle, createArticle,
-  getArticle
+  getArticle, updateArticle
 }
