@@ -1,4 +1,6 @@
 const User = require('../models/User');
+var bcrypt = require('bcryptjs');
+var salt = bcrypt.genSaltSync(10);
 
 var findAllUser = (req, res) => {
   User.find()
@@ -9,9 +11,10 @@ var findAllUser = (req, res) => {
 }
 
 var signUp = (req, res) => {
+  var hash = bcrypt.hashSync(req.body.password, salt);
   User.create({
     username: req.body.username,
-    password: req.body.password,
+    password: hash,
     email: req.body.email
   })
   .then(user => {
