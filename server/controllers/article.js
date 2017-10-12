@@ -33,11 +33,31 @@ var getArticle = (req, res) => {
 }
 
 var updateArticle = (req, res) => {
-  Article.update({_id: req.params.id}, {
-    $set: req.body
-  })
+  Article.findById(req.params.id)
   .then(article => {
-    res.send(article)
+    if(article.author == req.id){
+      article.title = req.body.title || article.title
+      article.content = req.body.content || article.content
+      article.category = req.body.category || article.category
+      article.author = article.author
+      
+      article.save((err, result) => {
+        if(err){
+          res.send({
+            message: err
+          })
+        }
+        res.send({
+          message: `Berhasil mengupdate ${result.title}`,
+          result: result
+        })
+      })
+    } else {
+      res.status(500).send({
+        message: 'bukan author konten ini',
+        err: err
+      })
+    }
   })
   .catch(err => res.send(err))
 }
