@@ -4,9 +4,8 @@ const express = require('express'),
       cors = require('cors'),
       morgan = require('morgan'),
       axios = require('axios');
-const user = require('./routes/user');
-      // question = require('./routes/question'),
-      // answer = require('./routes/answer');
+const user = require('./routes/user'),
+      article = require('./routes/article')
 const app = express();
 const port = process.env.PORT || 3000 ;
 
@@ -26,9 +25,7 @@ db.once('open', function() {
 
 // route setting use
 app.use('/api', user)
-// app.use('/questions', question)
-// app.use('/answer', answer)
-
+app.use('/api/articles', article)
 
 app.listen(port);
 console.log('Your presentation is running on http://localhost:' + port);

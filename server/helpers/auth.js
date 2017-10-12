@@ -3,7 +3,7 @@ require('dotenv').config()
 
 var isUser = (req, res, next) => {
   jwt.verify(req.headers.token, process.env.SECRET_JWT , function(err, decoded) {
-    if(!err || decode != null || decode != ''){
+    if(!err){
       req.id = decoded.id
       req.username = decoded.username
       req.email = decoded.email
