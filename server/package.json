@@ -1,0 +1,35 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "server side article page",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anggraito/hacktivpress-anggie.git"
+  },
+  "keywords": [
+    "article",
+    "vuex",
+    "vue-cli",
+    "express"
+  ],
+  "author": "anggraito",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anggraito/hacktivpress-anggie/issues"
+  },
+  "homepage": "https://github.com/anggraito/hacktivpress-anggie#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "jsonwebtoken": "^8.1.0",
+    "mongoose": "^4.12.1",
+    "morgan": "^1.9.0"
+  }
+}
