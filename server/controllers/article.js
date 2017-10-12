@@ -89,11 +89,13 @@ var removeArticle = (req, res) => {
 }
 
 var getByAuthor = (req, res) => {
+  console.log('masuk sini')
   Article.find({
     author: req.params.author
   })
-  .populate('author', '_id username')
+  .populate('author', '_id.username')
   .exec((err, result)=>{
+    console.log('masuk sini reult -->---', result)
     if(err) res.send({err: err});
     res.json(result);
   })
