@@ -65,11 +65,12 @@ var updateArticle = (req, res) => {
 }
 
 var removeArticle = (req, res) => {
-  Article.findByIdAndRemove({_id: req.params.id})
+  Article.findById({_id: req.params.id})
   .then((article) => {
     console.log('ini author -----', article)
+    console.log('ini req.id token -----', req.id)
     if(article.author == req.id){
-      Article.remove({
+      Article.findByIdAndRemove({
         _id: req.params.id
       })
       .then(() => {
