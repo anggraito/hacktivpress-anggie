@@ -10,11 +10,15 @@ const http = axios.create({
 
 const store = new Vuex.Store({
   state: {
-    articles: []
+    articles: [],
+    category = []
   },
   mutations: {
     setArticles (state, payload) {
       state.articles = payload
+    },
+    setCategory (state, payload) {
+      state.category = payload
     }
   },
   actions: {
@@ -22,6 +26,13 @@ const store = new Vuex.Store({
       http.get('/articles')
       .then(articles => {
         commit('setArticles', articles.data)
+      })
+      .catch(err => console.error(err))
+    },
+    getCategory ({commit}, category) {
+      http.get(`/category/${category}`)
+      .then(category => {
+        commit('setCategory', category.data)
       })
       .catch(err => console.error(err))
     }
