@@ -35,6 +35,8 @@ var getArticle = (req, res) => {
 var updateArticle = (req, res) => {
   Article.findById(req.params.id)
   .then(article => {
+    console.log('article author', article.author)
+    console.log('req id', req.id)
     if(article.author == req.id){
       article.title = req.body.title || article.title
       article.content = req.body.content || article.content
